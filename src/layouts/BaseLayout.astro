@@ -1,298 +1,58 @@
+---
+const { title = "AATSMA" } = Astro.props;
+
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- Google Fonts preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Plus Jakarta Sans font family -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Alpine.js for lightweight interactivity -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- Tailwind custom config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    // Custom font family
-                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-
-                    // Brand color palette
-                    colors: {
-                        brand: {
-                            dark: '#0f172a', // Deep slate background
-                            accent: '#fb923c' // Accent orange
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- WordPress head hook (plugins, styles, scripts) -->
-    <?php wp_head(); ?>
-
-    <style>
-        /* Hide Alpine elements until JS loads */
-        [x-cloak] { display: none !important; }
-
-        /* Remove default WP admin margin */
-        html { margin-top: 0 !important; }
-        
-        /* Animated underline for nav links */
-        .nav-link-item { position: relative; padding: 0.5rem 0; }
-        .nav-link-item::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #fb923c;
-            transition: width 0.3s ease;
-        }
-        .nav-link-item:hover::after, 
-        .current-menu-item > a::after { width: 100%; }
-
-        /* Slim custom scrollbar for mobile menu */
-        #mobile-drawer::-webkit-scrollbar { width: 4px; }
-        #mobile-drawer::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-    </style>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+     
 </head>
 
-<body <?php body_class("bg-gray-50 antialiased font-sans"); ?>>
+<body class="bg-gray-50 antialiased font-sans")>
 
-<!-- Alpine.js state for mobile menu + scroll detection -->
-<div x-data="{ mobileMenu: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
-
-    <!-- Fixed header / navbar -->
-    <header 
-        :class="scrolled ? 'bg-brand-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-brand-dark py-5'"
-        class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-white/5"
-    >
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-            
-            <!-- Logo / home link -->
-            <a href="<?php echo home_url(); ?>" class="shrink-0 group">
-                <span class="text-2xl font-black tracking-tighter text-white uppercase group-hover:text-brand-accent transition-colors">
-                    AATS
-                </span>
-            </a>
-
-            <!-- Desktop navigation menu -->
-            <nav class="hidden lg:block ml-10">
-                <ul class="flex items-center space-x-8 text-[13px] font-bold tracking-widest uppercase text-white/80">
-                    <li><a href="#">Test2</a></li>
-                </ul>
-            </nav>
-
-            <!-- Right-side header actions -->
-            <div class="flex items-center gap-4 flex-1 justify-end">
-                
-                <!-- Search form (desktop only) -->
-                <form action="<?php echo home_url('/'); ?>" method="get" class="relative hidden md:block group">
-                    <input type="text" name="s" placeholder="Search..." 
-                        class="bg-white/5 border border-white/10 text-white text-sm rounded-full py-2 px-5 pl-10 w-40 lg:w-56 focus:w-72 focus:bg-white focus:text-brand-dark focus:outline-none transition-all duration-500 placeholder:text-white/30">
-                    
-                    <!-- Search icon -->
-                    <svg class="w-4 h-4 absolute left-3.5 top-2.5 text-white/30 group-focus-within:text-brand-dark transition-colors" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                        <path d="M21 21l-4.35-4.35M19 11a8 8 0 11-16 0 8 8 0 0116 0z"/>
-                    </svg>
-                </form>
-
-                <!-- CTA button -->
-                <a href="/courses" class="hidden sm:block bg-brand-accent hover:bg-orange-500 text-brand-dark text-[11px] font-black uppercase tracking-[0.15em] px-6 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-orange-500/20">
-                    Enroll Now
-                </a>
-
-                <!-- Mobile menu button -->
-                <button @click="mobileMenu = true" class="lg:hidden text-white p-2">
-                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile menu (teleported to body) -->
-    <template x-teleport="body">
-        <div>
-            <!-- Dark overlay -->
-            <div x-show="mobileMenu" x-cloak class="fixed inset-0 bg-brand-dark/60 backdrop-blur-sm z-[60] lg:hidden" @click="mobileMenu = false" x-transition.opacity></div>
-
-            <!-- Slide-in drawer -->
-            <div x-show="mobileMenu" x-cloak id="mobile-drawer"
-                class="fixed inset-y-0 right-0 w-[300px] bg-brand-dark z-[70] shadow-2xl lg:hidden p-8 flex flex-col"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="translate-x-full"
-                x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition ease-in duration-300"
-                x-transition:leave-start="translate-x-0"
-                x-transition:leave-end="translate-x-full">
-                
-                <!-- Mobile menu header -->
-                <div class="flex justify-between items-center mb-10">
-                    <span class="text-white font-black tracking-tighter text-xl uppercase">Menu</span>
-                    <button @click="mobileMenu = false" class="text-white/50 hover:text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Mobile navigation links -->
-                <nav class="flex-1">
-                    <ul class="flex flex-col space-y-6 text-xl font-bold text-white">
-                        <li><a href="#">Test</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Mobile CTA -->
-                <div class="mt-10 pt-6 border-t border-white/10">
-                    <a href="/courses" class="block w-full text-center bg-brand-accent text-brand-dark font-black py-4 rounded-xl uppercase tracking-widest text-sm">
-                        Enroll Now
-                    </a>
-                </div>
-            </div>
-        </div>
-    </template>
-
-</div>
+<Header />
 
 <!-- Content -->
 <slot />
 
-<!-- Footer section -->
-<footer class="bg-slate-900 text-slate-300 relative overflow-hidden" aria-labelledby="footer-heading">
-    
-    <!-- Screen-reader only heading for accessibility -->
-    <h2 id="footer-heading" class="sr-only">Footer</h2>
-
-    <!-- Subtle dotted background overlay -->
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-    <!-- Main footer container -->
-    <div class="container mx-auto px-6 lg:px-8 relative z-10 pt-16 pb-8">
-        
-        <!-- Footer grid layout -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-            
-            <!-- Brand + description + social links -->
-            <div class="space-y-6">
-                
-                <!-- Logo / brand link -->
-                <a href="<?php echo home_url(); ?>" class="flex items-center gap-2 text-white group">
-                    <div class="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12">
-                        K9
-                    </div>
-                    <span class="text-xl font-black tracking-tight">
-                        Therapy<span class="text-orange-500">.org</span>
-                    </span>
-                </a>
-                
-                <!-- Short mission statement -->
-                <p class="text-sm leading-relaxed text-slate-400">
-                    Dedicated to healing hearts and building bridges through the unconditional love of trained therapy dogs.
-                </p>
-
-                <!-- Social media icons -->
-                <div class="flex space-x-4">
-                    
-                    <!-- Facebook -->
-                    <a href="#" class="text-slate-400 hover:text-white transition-colors">
-                        <span class="sr-only">Facebook</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a href="#" class="text-slate-400 hover:text-white transition-colors">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Organization links -->
-            <div>
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-6">Organization</h3>
-                <ul role="list" class="space-y-4">
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">About Us</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Our Team</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Financials & 990s</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Careers</a></li>
-                </ul>
-            </div>
-
-            <!-- Get involved links -->
-            <div>
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-6">Get Involved</h3>
-                <ul role="list" class="space-y-4">
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Request a K9 Visit</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Volunteer</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Partner With Us</a></li>
-                    <li><a href="#" class="text-sm hover:text-orange-500 hover:translate-x-1 transition-all inline-block">Donate Crypto/Stock</a></li>
-                </ul>
-            </div>
-
-            <!-- Email signup section -->
-            <div>
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-6">Join the Pack</h3>
-                <p class="text-sm text-slate-400 mb-4">
-                    Receive heartwarming stories and impact updates. No spam, ever.
-                </p>
-
-                <!-- Newsletter form -->
-                <form class="flex flex-col gap-3">
-                    <label for="email-address" class="sr-only">Email address</label>
-
-                    <!-- Email input -->
-                    <input type="email" name="email-address" id="email-address" autocomplete="email" required 
-                        class="w-full min-w-0 appearance-none rounded-lg border-0 bg-white/5 px-4 py-3 text-base text-white ring-1 ring-inset ring-white/10 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all" 
-                        placeholder="Enter your email">
-
-                    <!-- Subscribe button -->
-                    <button type="submit" class="flex-none rounded-lg bg-orange-500 px-3.5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 transition-colors">
-                        Subscribe
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Bottom footer bar -->
-        <div class="border-t border-white/10 pt-8 mt-12 md:flex md:items-center md:justify-between">
-            
-            <!-- Copyright + nonprofit info -->
-            <div class="flex flex-col md:flex-row gap-4 md:gap-8 text-xs text-slate-500">
-                <p>&copy; <?php echo date('Y'); ?> K9 Therapy Inc. All rights reserved.</p>
-                <p>K9 Therapy Inc. is a registered 501(c)(3) non-profit organization.</p>
-            </div>
-
-            <!-- Legal links -->
-            <div class="mt-4 md:order-1 md:mt-0">
-                <div class="flex gap-6 text-xs text-slate-500">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</footer>
+<Footer />
 
 
 </body>
 </html>
+
+<style is:global>
+    /* Hide Alpine elements until JS loads */
+    [x-cloak] { display: none !important; }
+
+    /* Remove default WP admin margin */
+    html { margin-top: 0 !important; }
+
+    /* Animated underline for nav links */
+    .nav-link-item { position: relative; padding: 0.5rem 0; }
+    .nav-link-item::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #fb923c;
+        transition: width 0.3s ease;
+    }
+    .nav-link-item:hover::after, 
+    .current-menu-item > a::after { width: 100%; }
+
+    /* Slim custom scrollbar for mobile menu */
+    #mobile-drawer::-webkit-scrollbar { width: 4px; }
+    #mobile-drawer::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+</style>
