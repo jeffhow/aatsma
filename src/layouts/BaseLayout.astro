@@ -17,7 +17,7 @@ import Footer from '../components/Footer.astro';
      
 </head>
 
-<body class="bg-gray-50 antialiased font-sans")>
+<body class="bg-gray-50 antialiased font-sans">
 
 <Header />
 
@@ -31,28 +31,9 @@ import Footer from '../components/Footer.astro';
 </html>
 
 <style is:global>
-    /* Hide Alpine elements until JS loads */
+    /* 1. Essential for any page using Alpine */
     [x-cloak] { display: none !important; }
 
-    /* Remove default WP admin margin */
+    /* 2. Affects the root HTML element */
     html { margin-top: 0 !important; }
-
-    /* Animated underline for nav links */
-    .nav-link-item { position: relative; padding: 0.5rem 0; }
-    .nav-link-item::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #fb923c;
-        transition: width 0.3s ease;
-    }
-    .nav-link-item:hover::after, 
-    .current-menu-item > a::after { width: 100%; }
-
-    /* Slim custom scrollbar for mobile menu */
-    #mobile-drawer::-webkit-scrollbar { width: 4px; }
-    #mobile-drawer::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
 </style>
