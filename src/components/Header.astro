@@ -10,18 +10,21 @@ const currentPath = pathname.slice(1); // removes the leading "/"
   <header
     @scroll.window="updateScroll()"
     :class="headerClasses()"
-    class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-primary"
+    class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-primary-dark"
   >
     <div
       class="max-w-7xl mx-auto px-6 py-5 lg:px-8 flex items-center justify-between"
     >
       <!-- Logo / home link -->
-      <a href="/" class="shrink-0 group">
-        <span
-          class="text-2xl font-black tracking-tighter text-white uppercase group-hover:text-primary-accent transition-colors"
-        >
-          AATS
-        </span>
+      <a
+        href="/"
+      >
+        <h1 class="shrink-0 group text-surface flex flex-col items-start font-header">
+          <span class="text-2xl group-hover:text-accent transition-colors">
+            Animal Assisted Therapy Services
+          </span>
+          <span class="group-hover:text-primary-light">of Massachusetts</span>
+        </h1>
       </a>
 
       <!-- Desktop navigation menu -->
@@ -61,12 +64,12 @@ const currentPath = pathname.slice(1); // removes the leading "/"
             type="text"
             name="s"
             placeholder="Search..."
-            class="bg-white/5 border border-white/10 text-white text-sm rounded-full py-2 px-5 pl-10 w-40 lg:w-56 focus:w-72 focus:bg-white focus:text-primary-dark focus:outline-none transition-all duration-500 placeholder:text-white/30"
+            class="bg-surface/10 border border-surface/50 text-surface text-sm rounded-full py-2 px-5 pl-10 w-40 lg:w-56 focus:w-72 focus:bg-white focus:text-primary-dark focus:outline-none transition-all duration-500 placeholder:text-white/85"
           />
 
           <!-- Search icon -->
           <svg
-            class="w-4 h-4 absolute left-3.5 top-2.5 text-white/30 group-focus-within:text-primary-dark transition-colors"
+            class="w-4 h-4 absolute left-3.5 top-2.5 text-white/85 group-focus-within:text-primary-dark transition-colors"
             fill="none"
             stroke="currentColor"
             stroke-width="3"
@@ -80,7 +83,7 @@ const currentPath = pathname.slice(1); // removes the leading "/"
         <!-- CTA button -->
         <a
           href="/courses"
-          class="hidden sm:block bg-accent hover:bg-orange-500 text-primary-dark text-[11px] font-black uppercase tracking-[0.15em] px-6 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-orange-500/20"
+          class="hidden sm:block bg-accent hover:bg-surface text-primary-dark transition-colors text-[11px] font-black uppercase tracking-[0.15em] px-6 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-orange-500/20"
         >
           Enroll Now
         </a>
@@ -128,14 +131,15 @@ const currentPath = pathname.slice(1); // removes the leading "/"
         x-transition:leave-end="translate-x-full"
       >
         <!-- Mobile menu header -->
-        <div class="flex justify-between items-center mb-10">
-          <span class="text-white font-black tracking-tighter text-xl uppercase"
+        <button
+          class="flex justify-between items-center font-bold mb-10"
+          @click="mobileMenu = false"
+        >
+          <span
+            class="text-surface/80 hover:text-surface transition-colors tracking-tighter text-xl uppercase"
             >Menu</span
           >
-          <button
-            @click="mobileMenu = false"
-            class="text-white/50 hover:text-white"
-          >
+          <span class="text-surface/80 hover:text-surface transition-colors">
             <svg
               class="w-6 h-6"
               fill="none"
@@ -148,12 +152,12 @@ const currentPath = pathname.slice(1); // removes the leading "/"
                 stroke-width="2"
                 d="M6 18L18 6M6 6l12 12"></path>
             </svg>
-          </button>
-        </div>
+          </span>
+        </button>
 
         <!-- Mobile navigation links -->
         <nav class="flex-1">
-          <ul class="flex flex-col space-y-6 text-xl font-bold text-white">
+          <ul class="flex flex-col space-y-6 text-xl font-bold text-surface">
             <li
               class={currentPath === ""
                 ? "nav-link-item current-menu-item"
@@ -173,7 +177,7 @@ const currentPath = pathname.slice(1); // removes the leading "/"
                 ? "nav-link-item current-menu-item ms-5"
                 : "nav-link-item ms-2"}
             >
-            <a href="#">Dog Training Classes</a>
+              <a href="#">Dog Training Classes</a>
             </li>
             <li
               class={currentPath === "/about"
@@ -196,7 +200,7 @@ const currentPath = pathname.slice(1); // removes the leading "/"
         <div class="mt-10 pt-6 border-t border-white/10">
           <a
             href="/courses"
-            class="block w-full text-center bg-accent text-primary-dark font-black py-4 rounded-xl uppercase tracking-widest text-sm"
+            class="block w-full text-center bg-accent hover:bg-accent-hover text-primary-dark font-black py-4 rounded-xl uppercase tracking-widest text-sm"
           >
             Enroll Now
           </a>
@@ -235,7 +239,7 @@ const currentPath = pathname.slice(1); // removes the leading "/"
         return {
           "translate-y-0": !this.scrollingDown,
           "-translate-y-full": this.scrollingDown,
-          "bg-primary-dark/50 shadow-md": !this.atTop,
+          "bg-primary-dark/90 shadow-md": !this.atTop,
           "bg-primary": this.atTop,
         };
       },

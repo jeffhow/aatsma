@@ -1,24 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Slackey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap');
 @import "tailwindcss";
 
 /* custom tailwind styles */
 @theme {
-  --font-brand: "Plus Jakarta Sans", sans-serif;
+  --font-header: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
 
-  /* New theme to test*/
-  --color-primary: #064e3b;
-  --color-primary-light: #065f46;
-  --color-primary-dark: #022c22;
+  /* New theme https://codepen.io/editor/jeffhowcodes/pen/019d4e21-8ef1-77eb-8f8e-6708899a9cec/715ee23d0da95eefb8358a67a6222ca7 */
+  --color-primary: #367241;
+  --color-primary-light: #74a97d;
+  --color-primary-dark: #26502e;
 
   /* Secondary: Muted Slate to balance the green */
   --color-secondary: #334155;
   
   /* Accent: Harvest Gold (Perfect for buttons/links) */
-  --color-accent: #d97706;
-  --color-accent-hover: #b45309;
+  --color-accent: #fdba2c;
+  --color-accent-hover: #de9702;
 
   /* Neutrals: Clean and professional */
   --color-surface: #f8fafc;    /* Light grayish-blue tint */
   --color-ink: #0f172a;        /* Deep navy-black for text */
   --color-muted: #64748b;
+
+  /* Overriding the default transition duration */
+  --default-transition-duration: 0.3s;
 }
