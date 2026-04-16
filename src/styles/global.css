@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 /* custom tailwind styles */
 @theme {
   --font-header: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Unna", serif;
 
   /* New theme https://codepen.io/editor/jeffhowcodes/pen/019d4e21-8ef1-77eb-8f8e-6708899a9cec/715ee23d0da95eefb8358a67a6222ca7 */
   --color-primary: #367241;
