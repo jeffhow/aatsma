@@ -11,6 +11,7 @@ console.log(currentPath);
 
 <div x-data="headerLogic()">
   <!-- Fixed header / navbar -->
+   <!-- @todo: Clean up the flex garbage here. create a mobile brand and desktop brand-->
   <header
     @scroll.window="updateScroll()"
     :class="headerClasses()"
@@ -25,18 +26,18 @@ console.log(currentPath);
         class="block"
       >
 
-        <h1 class="relative z-0 hover:text-muted transition-colors text-surface flex flex-col items-start font-header leading-none me-10">
-          <img 
-            src={Logo.src} 
-            alt="hand holding dog paw" 
-            class="absolute -right-14 z-1 opacity-50 h-[96px] -bottom-5"
-          />
-          <span class="text-2xl leading-none mb-1 z-2 text-shadow-lg">
+        <h1 class="z-0 hover:text-muted transition-colors text-surface flex flex-col items-start font-header leading-none me-10">
+          <span class="relative text-2xl leading-none mb-1 z-2 text-shadow-lg">
+            <img 
+              src={Logo.src} 
+              alt="hand holding dog paw" 
+              class="absolute -right-0 z-1 opacity-50 h-[96px] -bottom-13"
+            />
             <span class="text-nowrap">Animal Assisted</span> 
             <span class="text-nowrap">Therapy Services</span>
           </span>
 
-          <span class=" w-full text-xl font-accent italic bold tracking-wide">of Massachusetts</span>
+          <span class="text-xl font-accent italic bold tracking-wide">of Massachusetts</span>
         </h1>
       </a>
 
