@@ -18,7 +18,7 @@ console.log(currentPath);
     class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-primary-dark"
   >
     <div
-      class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between"
+      class="mx-auto px-6 lg:px-8 py-5 flex items-center justify-between"
     >
       <!-- Logo / home link -->
       <a
@@ -26,18 +26,18 @@ console.log(currentPath);
         class="block"
       >
 
-        <h1 class="z-0 hover:text-muted transition-colors text-surface flex flex-col items-start font-header leading-none me-10">
-          <span class="relative text-2xl leading-none mb-1 z-2 text-shadow-lg">
-            <img 
-              src={Logo.src} 
-              alt="hand holding dog paw" 
-              class="absolute -right-0 z-1 opacity-50 h-[96px] -bottom-13"
-            />
-            <span class="text-nowrap">Animal Assisted</span> 
-            <span class="text-nowrap">Therapy Services</span>
-          </span>
+        <h1 class="relative z-0 hover:text-muted transition-colors text-surface  me-10">
+          <img 
+            src={Logo.src} 
+            alt="hand holding dog paw" 
+            class="absolute -left-15 z-1 opacity-50 h-[96px] -bottom-6"
+          />
+          <div class="flex flex-col items-start text-2xl font-header leading-none ms-20 mb-1 z-2 text-shadow-lg">
+            <div class="md:text-nowrap text-center md:text-left">Animal Assisted
+            Therapy Services</div>
+            <div class="w-full text-xl font-accent italic bold tracking-wide text-center md:text-left">of Massachusetts</div>
+          </div>
 
-          <span class="text-xl font-accent italic bold tracking-wide">of Massachusetts</span>
         </h1>
       </a>
 

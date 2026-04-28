@@ -1,73 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Typescript needs to know the type being imported by the glob
-import type { ImageMetadata } from "astro"; 
-// import the Alts
-import altText from "../assets/partners/alt-text.json"
-const { alt } = altText
+// // Typescript needs to know the type being imported by the glob
+// import type { ImageMetadata } from "astro"; 
+// // import the Alts
+// import altText from "../assets/partners/alt-text.json"
+// const { alt } = altText
 
 import {Image} from 'astro:assets';
-import Hero from '../components/Hero.astro';
+import Hero from '../components/home/Hero.astro';
+import Partners from '../components/home/Partners.astro';
 
-const images = import.meta.glob<{default: ImageMetadata}>('../assets/partners/*.{jpeg,jpg,png,gif,webp}');
-const imagePaths = Object.values(images);
+// const images = import.meta.glob<{default: ImageMetadata}>('../assets/partners/*.{jpeg,jpg,png,gif,webp}');
+// const imagePaths = Object.values(images);
 ---
 
 <BaseLayout>
   <!-- Hero -->
   <Hero />
 
-  <!-- Partners  -->
-  <section class="py-24 bg-slate-50/50">
-    <!-- Main container for the partners section -->
-    <div class="container mx-auto px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <!-- Section intro with heading + subtext -->
-        <h2
-          class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6"
-        >
-          Trusted by Massachusetts' Leaders
-        </h2>
-        <p class="text-xl text-slate-600 font-medium leading-relaxed">
-          We are honored to partner with premier law enforcement agencies,
-          universities, and healthcare facilities across the Commonwealth.
-        </p>
-      </div>
-
-	  <div class="mt-16 text-center">
-        <!-- Small label under the logos -->
-        <p class="text-sm font-bold text-slate-400 uppercase mb-8 tracking-[0.3em]">
-          Institutional Partners & Affiliates
-        </p>
-      </div>
-      <!-- Grid of partner logos --> 
-	  <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8"
-      >
-        <!-- Each logo card -->
-		{
-			imagePaths.map((image,i) => (
-
-			<div
-				class="group relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
-			>
-				<Image 
-					src={image()} 
-					alt={alt[i]} 
-					width={400} 
-					height={400}
-					class="h-24 w-full object-contain transform transition-transform duration-500 group-hover:scale-110"
-				/>
-			</div>
-			))
-		}
-
-      
-
-      
-    </div>
-  </section>
+  <Partners />
 
   <!-- Making headlines -->
   <section class="py-24 bg-slate-50 relative overflow-hidden">

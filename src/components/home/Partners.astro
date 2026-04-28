@@ -1,0 +1,58 @@
+---
+import {Image} from 'astro:assets';
+// Typescript needs to know the type being imported by the glob
+import type { ImageMetadata } from "astro"; 
+// import the Alts
+import altText from "../../assets/partners/alt-text.json"
+const { alt } = altText
+const images = import.meta.glob<{default: ImageMetadata}>('../../assets/partners/*.{jpeg,jpg,png,gif,webp}');
+const imagePaths = Object.values(images);
+---
+<!-- Partners  -->
+  <section class="py-24 bg-slate-50/50">
+    <!-- Main container for the partners section -->
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <!-- Section intro with heading + subtext -->
+        <h2
+          class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6"
+        >
+          Trusted by Massachusetts' Leaders
+        </h2>
+        <p class="text-xl text-slate-600 font-medium leading-relaxed">
+          We are honored to partner with premier law enforcement agencies,
+          universities, and healthcare facilities across the Commonwealth.
+        </p>
+      </div>
+
+	  <div class="mt-16 text-center">
+        <!-- Small label under the logos -->
+        <p class="text-sm font-bold text-slate-400 uppercase mb-8 tracking-[0.3em]">
+          Institutional Partners & Affiliates
+        </p>
+      </div>
+      <!-- Grid of partner logos --> 
+	  <!-- <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 aspect-square"
+      > -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Each logo card -->
+		{
+			imagePaths.map((image,i) => (
+            <div class="aspect-square bg-white border border-slate-100 rounded-2xl p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+
+            
+			
+				<Image 
+					src={image()} 
+					alt={alt[i]} 
+class="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"				/>
+			</div>
+			))
+		}
+
+      
+
+      
+    </div>
+  </section>
