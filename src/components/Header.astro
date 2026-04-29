@@ -26,13 +26,13 @@ console.log(currentPath);
         class="block"
       >
 
-        <h1 class="relative z-0 hover:text-muted transition-colors text-surface  me-10">
+        <h1 class="relative z-0 hover:text-muted transition-colors text-surface">
           <img 
             src={Logo.src} 
             alt="hand holding dog paw" 
-            class="absolute -left-15 z-1 opacity-50 h-[96px] -bottom-6"
+            class="absolute -left-15 z-1 opacity-50 h-[96px] -bottom-6 hidden md:block"
           />
-          <div class="flex flex-col items-start text-2xl font-header leading-none ms-20 mb-1 z-2 text-shadow-lg">
+          <div class="flex flex-col items-start text-2xl font-header leading-none md:ms-20 mb-1 z-2 text-shadow-lg">
             <div class="md:text-nowrap text-center md:text-left">Animal Assisted
             Therapy Services</div>
             <div class="w-full text-xl font-accent italic bold tracking-wide text-center md:text-left">of Massachusetts</div>
@@ -42,7 +42,7 @@ console.log(currentPath);
       </a>
 
       <!-- Desktop navigation menu -->
-      <nav class="hidden lg:block ml-10">
+      <nav class="hidden xl:block ml-10">
         <ul
           class="flex items-center space-x-8 text-[13px] font-bold tracking-widest uppercase text-white/80"
         >
@@ -138,7 +138,7 @@ console.log(currentPath);
         </a>
 
         <!-- Mobile menu button -->
-        <button @click="mobileMenu = true" class="lg:hidden text-white p-2">
+        <button @click="mobileMenu = true" class="xl:hidden text-white p-2">
           <svg
             class="w-7 h-7"
             fill="none"
