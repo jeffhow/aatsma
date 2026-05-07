@@ -1,0 +1,143 @@
+---
+/**
+ * @component Header
+ * @description The main navigation container. Orchestrates the layout 
+ * for desktop navigation and the mobile drawer.
+ * @requires ./Search.astro
+ * @requires ./NavLink.astro
+ * @requires ./MobileDrawer.astro
+ * @requires ../Button.astro
+ * @example <Header />
+ */
+
+import Logo from '../../assets/paw-and-hand.svg';
+import Search from './Search.astro';
+import NavLink from './NavLink.astro';
+import MobileDrawer from './MobileDrawer.astro';
+import Button from '../Button.astro';
+---
+<div x-data="headerLogic()">
+  <header
+    @scroll.window="updateScroll()"
+    :class="headerClasses()"
+    data-pagefind-ignore
+    class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-primary-dark"
+  >
+    <div
+      class="mx-auto px-6 lg:px-8 py-5 flex items-center justify-between"
+    >
+      <!-- Logo / home link -->
+      <a
+        href="/" 
+        class="block"
+      >
+
+        <h1 class="relative z-0 hover:text-muted transition-colors text-surface">
+          <img 
+            src={Logo.src} 
+            alt="hand holding dog paw" 
+            class="absolute -left-15 z-1 opacity-50 h-[96px] -bottom-5 hidden md:block"
+          />
+          <div class="flex flex-col items-start text-2xl font-header leading-none md:ms-20 z-2 text-shadow-lg">
+            <div class="md:text-nowrap text-center md:text-left">Animal Assisted
+            Therapy Services</div>
+            <div class="w-full text-xl font-accent italic bold tracking-wide text-center md:text-left">of Massachusetts</div>
+          </div>
+
+        </h1>
+      </a>
+
+      <!-- Desktop navigation menu -->
+      <NavLink />
+
+      <!-- Right-side header actions -->
+      <div class="flex items-center gap-4 flex-1 justify-end">
+        <!-- desktop search -->      
+        <Search id="desktop-search" class="hidden md:block"/> 
+
+        <!-- CTA button -->
+        <Button href="/join" variant="accent" class="text-[11px] hidden sm:block">Enroll Now</Button>
+
+        <!-- Mobile menu button -->         
+        <button @click="$dispatch('toggle-drawer')" class="lg:hidden text-white p-2">
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  
+</div>
+
+<!-- MOBILE NAV -->
+ <MobileDrawer />
+
+ 
+
+<script is:inline>
+  function headerLogic() {
+    return {
+      atTop: true,
+      scrollingDown: false,
+      mobileMenu: false,
+      lastPos: 0,
+      updateScroll() {
+        // If the mobile menu is open, don't hide the header!
+        if (this.mobileMenu) return;
+
+        const currentPos = window.pageYOffset;
+        this.atTop = currentPos <= 50;
+        this.scrollingDown = currentPos > this.lastPos && currentPos > 50;
+        this.lastPos = currentPos;
+      },
+     
+      headerClasses() {
+        return {
+          "translate-y-0": !this.scrollingDown,
+          "-translate-y-full": this.scrollingDown,
+          "bg-primary-dark/90 shadow-md": !this.atTop,
+          "bg-primary": this.atTop,
+        };
+      },
+    };
+  }
+</script>
+
+<style>
+  /* Animated underline for nav links */
+  .nav-link-item {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  .nav-link-item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+  .nav-link-item:hover::after,
+  .current-menu-item::after {
+    width: 100%;
+  }
+
+  /* Slim custom scrollbar for mobile menu */
+  :global(#mobile-drawer::-webkit-scrollbar) {
+    width: 4px;
+  }
+  #mobile-drawer::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+  }
+</style>

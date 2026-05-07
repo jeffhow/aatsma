@@ -2,14 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 // // Typescript needs to know the type being imported by the glob
-// import type { ImageMetadata } from "astro"; 
+// import type { ImageMetadata } from "astro";
 // // import the Alts
 // import altText from "../assets/partners/alt-text.json"
 // const { alt } = altText
 
-import {Image} from 'astro:assets';
-import Hero from '../components/home/Hero.astro';
-import Partners from '../components/home/Partners.astro';
+import { Image } from "astro:assets";
+import Hero from "../components/home/Hero.astro";
+import Partners from "../components/home/Partners.astro";
 
 // const images = import.meta.glob<{default: ImageMetadata}>('../assets/partners/*.{jpeg,jpg,png,gif,webp}');
 // const imagePaths = Object.values(images);
@@ -73,7 +73,7 @@ import Partners from '../components/home/Partners.astro';
           <!-- Article link cards -->
           <div class="space-y-4">
             <a
-              href="#"
+              href="https://www.theyankeexpress.com/2021/02/25/348443/aats-of-massachusetts-provides-canine-comfort-to-many"
               class="block p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 flex items-center gap-4 group"
             >
               <div
@@ -98,16 +98,36 @@ import Partners from '../components/home/Partners.astro';
                 <h4
                   class="font-bold text-slate-900 group-hover:text-orange-500 transition-colors"
                 >
-                  Worcester Telegram & Gazette Feature
+                  Blackstone Valley Xpress
+                  <svg
+                    class="inline"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    ></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
                 </h4>
                 <p class="text-sm text-slate-500">
-                  "Local heroes on four legs serve the community..."
+                  "AaTS of Massachusetts provides canine comfort to many..."
                 </p>
               </div>
             </a>
 
             <a
-              href="#"
+              href="https://www.youtube.com/watch?v=uQE1Lalwz1M"
+              target="_BLANK"
               class="block p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 flex items-center gap-4 group"
             >
               <div
@@ -133,9 +153,28 @@ import Partners from '../components/home/Partners.astro';
                   class="font-bold text-slate-900 group-hover:text-orange-500 transition-colors"
                 >
                   Kim Fontaine's Therapy Dog Journey
+                  <svg
+                    class="inline"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    ></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
                 </h4>
                 <p class="text-sm text-slate-500">
-                  Watch the full interview on our channel.
+                  Watch the full interview on Therapy Dog Talk.
                 </p>
               </div>
             </a>
