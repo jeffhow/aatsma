@@ -10,6 +10,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import Hero from "../components/home/Hero.astro";
 import Partners from "../components/home/Partners.astro";
+import VideoCard from "../components/VideoCard.astro";
 
 // const images = import.meta.glob<{default: ImageMetadata}>('../assets/partners/*.{jpeg,jpg,png,gif,webp}');
 // const imagePaths = Object.values(images);
@@ -22,53 +23,45 @@ import Partners from "../components/home/Partners.astro";
   <Partners />
 
   <!-- Making headlines -->
-  <section class="py-24 bg-slate-50 relative overflow-hidden">
+  <section class="bg-gray-300">
     <!-- Decorative blurred background shapes -->
     <div
-      class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-30"
+      class="py-24 w-full h-full bg-linear-to-r/shorter from-gray-300 to-slate-200"
     >
-      <div
-        class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-gray-300 blur-3xl"
-      >
+      <!-- Headlines text + links -->
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <!-- Section intro with heading + subtext -->
+        <h2
+          class="text-4xl md:text-5xl font-black tracking-tight mb-6 text-slate-900 text-shadow-2xs"
+        >
+          Making Headlines & <br />Healing Hearts
+        </h2>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          From viral moments on Good Morning America to deep community impact
+          stories in local papers, our mission is resonating across the country.
+          See how our canine companions are changing the face of therapy.
+        </p>
       </div>
-      <div
-        class="absolute top-[40%] right-[0%] w-[40%] h-[60%] rounded-full bg-slate-200 blur-3xl"
-      >
-      </div>
-    </div>
 
-    <div class="container mx-auto px-6 lg:px-8 relative z-10">
-      <div class="flex flex-col lg:flex-row gap-12 items-center">
-        <!-- Video embed section -->
-        <div class="w-full lg:w-1/2">
-          <div
-            class="relative pb-[56.25%] h-0 rounded-2xl overflow-hidden shadow-2xl bg-black"
-          >
-            <iframe
-              class="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/wiU_ML-t8rw"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            >
-            </iframe>
-          </div>
-        </div>
+      <!-- Video embed section -->
+      <div class="container mx-auto px-6 lg:px-8 relative z-10 mb-8">
+        <!-- Row -->
+        <div class="flex flex-col lg:flex-row gap-12 items-center mb-8">
+          <!-- Therapy Dog Talk -->
+          <VideoCard 
+            src="https://www.youtube.com/embed/uQE1Lalwz1M?si=oTnBa1t-qj4lPdEC" 
+            href="https://www.youtube.com/watch?v=uQE1Lalwz1M" 
+            title="Kim Fontaine's Therapy Dog Journey" 
+            description="Watch the full interview on Therapy Dog Talk." />
+          
 
-        <!-- Headlines text + links -->
-        <div class="w-full lg:w-1/2 space-y-8">
-          <div>
-            <h2 class="text-4xl font-black text-slate-900 mb-4">
-              Making Headlines & <br />Healing Hearts
-            </h2>
-            <p class="text-lg text-slate-600 leading-relaxed">
-              From viral moments on Good Morning America to deep community
-              impact stories in local papers, our mission is resonating across
-              the country. See how our canine companions are changing the face
-              of therapy.
-            </p>
-          </div>
+          <VideoCard
+            src="https://www.youtube.com/embed/wiU_ML-t8rw"
+            href="https://youtu.be/wiU_ML-t8rw?si=ZElKcaX15svB9eiy"
+            title="‘GMA’ Pet of the Week: Meet Finn | GMA"
+            description="Finn, a 4-month-old Chocolate Lab who will embark on his journey to 
+              become a police service dog, brings joy to his community."
+          />
 
           <!-- Article link cards -->
           <div class="space-y-4">

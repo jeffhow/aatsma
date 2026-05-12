@@ -1,0 +1,99 @@
+---
+/**
+ * @component VideoCard
+ * @description For embedded Videos.
+ * @prop {string} src - The embed URL. required to embed the video.
+ * @prop {string} href - The destination URL. Renders as the link for the anchor tag.
+ * @prop {string} title - The video title. Renders as the text for the anchor tag.
+ * @prop {string} description - A short description of the video. If provided, renders as text.
+ * @prop {string} [class] - Additional CSS classes for custom positioning or tweaks.
+ * @example <Button href="/join" variant="primary">Enroll Now</Button>
+ */
+
+interface Props {
+  src: string;
+  href: string;
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { src, href, title, description, class: className } = Astro.props;
+
+
+const baseStyles =
+  "px-6 py-2.5 rounded-full font-black uppercase tracking-widest transition-all active:scale-95 shadow-lg text-center";
+---
+
+<aside class="w-full lg:w-1/2 shadow-2xl">
+  <!-- Video Card -->
+  <div class="relative pb-[56.25%] h-0 overflow-hidden bg-black">
+    <iframe
+      class="absolute top-0 left-0 w-full h-full"
+      src={src}
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+
+  <!-- Video Description -->
+  <div class="bg-white">
+    <a
+      href={href}
+      target="_BLANK"
+      class="block bg-white flex items-center gap-4 p-4 group"
+    >
+      <!-- Icon block -->
+      <div
+        class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+          ></path>
+        </svg>
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="flex gap-1">
+
+          <h4
+          class="relative font-bold text-slate-900 group-hover:text-orange-500 transition-colors whitespace-nowrap overflow-hidden truncate text-ellipsis"
+          >
+          {title}
+        </h4>
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        ></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </div>
+        <p class="text-sm text-slate-500 whitespace-nowrap overflow-hidden truncate text-ellipsis">
+          {description}
+        </p>
+      </div>
+    </a>
+  </div>
+</aside>
