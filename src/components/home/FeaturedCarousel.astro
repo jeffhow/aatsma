@@ -1,0 +1,63 @@
+---
+/**
+ * @component FeaturedCarousel
+ * @description For Featured Article links.
+ * @example <Carousel />
+ */
+---
+
+<div
+  x-data="{
+        skip: 1,
+        next() {
+            this.$refs.holder.scrollBy({ left: this.$refs.holder.clientWidth * this.skip, behavior: 'smooth'})
+        },
+        prev() {
+            this.$refs.holder.scrollBy({ left: -this.$refs.holder.clientWidth * this.skip, behavior: 'smooth' })
+        }
+    }"
+  class="relative w-full"
+>
+  <div
+    x-ref="holder"
+    class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-4"
+  >
+    <div
+      class="snap-center shrink-0 w-full aspect-video bg-slate-200 rounded-xl flex items-center justify-center"
+    >
+      <span class="text-4xl font-bold">1</span>
+    </div>
+    <div
+      class="snap-center shrink-0 w-full aspect-video bg-slate-200 rounded-xl flex items-center justify-center"
+    >
+      <span class="text-4xl font-bold">2</span>
+    </div>
+    <div
+      class="snap-center shrink-0 w-full aspect-video bg-slate-200 rounded-xl flex items-center justify-center"
+    >
+      <span class="text-4xl font-bold">3</span>
+    </div>
+    <div
+      class="snap-center shrink-0 w-full aspect-video bg-slate-200 rounded-xl flex items-center justify-center"
+    >
+      <span class="text-4xl font-bold">4</span>
+    </div>
+    <div
+      class="snap-center shrink-0 w-full aspect-video bg-slate-200 rounded-xl flex items-center justify-center"
+    >
+      <span class="text-4xl font-bold">5</span>
+    </div>
+
+    <button
+      @click="prev()"
+      class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg"
+      >prev</button
+    >
+
+    <button
+      @click="next()"
+      class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg"
+      >Next</button
+    >
+  </div>
+</div>

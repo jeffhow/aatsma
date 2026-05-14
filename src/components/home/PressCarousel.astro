@@ -1,0 +1,127 @@
+---
+/**
+ * @component PressCarousel
+ * @description Partial reveal carousel for small press release links.
+ * @example <PressCarousel />
+ */
+const items = [
+  {
+    title: "Podcast: 15 Minutes 0f...",
+    href: "https://15minutesof.blubrry.net/2021/03/15/kim-fontaine-therapy-dog-trainer/",
+    details: "Interview with Kim Fontaine, Therapy Dog Trainer",
+    src: "https://15minutesof.blubrry.net/wp-content/uploads/2020/06/15minutes2.jpg",
+    alt: "'15 minutes of' clock logo, ",
+    variant: "audio",
+  },
+  {
+    title: "Blackstone Valley Xpress",
+    href: "https://www.theyankeexpress.com/2021/02/25/348443/aats-of-massachusetts-provides-canine-comfort-to-many",
+    details: "AaTs of Massachusetts provides canine comfort to many",
+    src: "src/assets/press-images/non_20profit_202.webp",
+    alt: "An AaTs therapy dog team visits surgical residents at UMass.",
+    variant: "article",
+  },
+  {
+    title: "Woofster's Wonderdogs",
+    href: "https://www.milb.com/worcester/news/woofsters-wonderdogs-season-recap",
+    details:
+      "A Season-Long Celebration of Service, Therapy, and Rescue Dogs at Polar Park",
+    src: "https://img.mlbstatic.com/milb-images/image/upload/t_16x9/t_w1024/milb/xm8lk7crgjbvsdoqjwwv",
+    alt: "AATSMA Therapy Dog rolls around with Woo Sox Mascot (person dressed in dog costume).",
+    variant: "article",
+  },
+  {
+    title: "Holy Cross Magazine",
+    href: "https://magazine.holycross.edu/stories/inside-key-roles-therapy-dogs-play-and-campus",
+    details: "Inside the Key Roles Therapy Dogs Play on and off Campus",
+    src: "https://magazine.holycross.edu/sites/default/files/styles/story_full_1x/public/2024-03/Toshi%2C%20Gracie%2C%20Tomo%20therapy%20dogs.jpg?h=a1449943&itok=cpnWSTWH",
+    alt: "Three portraits of AATSMA Therapy dogs sitting",
+    variant: "article",
+  },
+];
+---
+
+<div
+  x-data="{
+        scroll(direction) {
+          const container = this.$refs.slider;
+          const containerWidth = container.offsetWidth;
+
+          // Find the first card to get the true width including padding
+          const itemWidth = container.firstElementChild.offsetWidth;
+          // Get the gap (spacing) between items
+          const gap = parseFloat(getComputedStyle(container).gap) || 0;
+          
+          const singleCardWidth = itemWidth + gap;
+          
+          const cardsToScroll = Math.floor(containerWidth/singleCardWidth);
+          const scrollAmount = singleCardWidth * cardsToScroll;
+
+          container.scrollBy({
+            left: direction==='next' ? scrollAmount : -scrollAmount,
+            behavior: 'smooth'
+          });
+        }
+    }"
+  class="relative bg-surface mb-4"
+>
+  <header class="flex justify-between py-2 px-3 border-t-4 border-muted">
+    <h3 class="font-black m-0 text-muted">In the Press</h3>
+    <div>
+      <button
+        aria-label="Previous Page"
+        @click="scroll('prev')"
+        class="sc-7d6c53e6-1 iqKLGA"
+      >
+        <svg
+          viewBox="0 0 32 32"
+          width="1em"
+          height="1em"
+          class="sc-583246d7-0 jUqtCV"
+          ><path d="M10.4 14.3 26.5 31h-6.4L5.5 16 20.1 1h6.4L10.4 17.7v-3.4z"
+          ></path></svg
+        >
+      </button>
+      <button
+        aria-label="Next Page"
+        @click="scroll('next')"
+        class="sc-7d6c53e6-1 iqKLGA"
+      >
+        <svg
+          viewBox="0 0 32 32"
+          width="1em"
+          height="1em"
+          class="sc-583246d7-0 jUqtCV"
+        >
+          <path d="M21.6 14.3 5.5 31h6.4l14.6-15L11.9 1H5.5l16.1 16.7v-3.4z"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </header>
+
+  <div
+    x-ref="slider"
+    class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 pb-4"
+  >
+    {
+      items.map((item) => (
+        <a href={item.href} target="_blank" class="group">
+          <div class="snap-start shrink-0 w-64 bg-white border-slate-300 shadow-sm mx[-1rem] overflow-hidden">
+            <img
+              src={item.src}
+              alt={item.alt}
+              class="aspect-square w-full h-64 object-cover"
+            />
+            <div class="p-2 bg-gray-200 group-hover:bg-accent transition-colors">
+              <h5 class="font-bold text-slate-900 truncate text-ellipsis ">
+                {item.title}
+              </h5>
+              <p class="text-xs text-slate-500 group-hover:text-black text-ellipsis transition-colors">{item.details}</p>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>
