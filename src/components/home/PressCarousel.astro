@@ -4,6 +4,9 @@
  * @description Partial reveal carousel for small press release links.
  * @example <PressCarousel />
  */
+import {Image} from 'astro:assets';
+import bvxCoverImage from '../../assets/press-images/non_20profit_202.webp';
+
 const items = [
   {
     title: "Podcast: 15 Minutes 0f...",
@@ -17,7 +20,7 @@ const items = [
     title: "Blackstone Valley Xpress",
     href: "https://www.theyankeexpress.com/2021/02/25/348443/aats-of-massachusetts-provides-canine-comfort-to-many",
     details: "AaTs of Massachusetts provides canine comfort to many",
-    src: "src/assets/press-images/non_20profit_202.webp",
+    src: bvxCoverImage,
     alt: "An AaTs therapy dog team visits surgical residents at UMass.",
     variant: "article",
   },
@@ -108,11 +111,14 @@ const items = [
       items.map((item) => (
         <a href={item.href} target="_blank" class="group">
           <div class="snap-start shrink-0 w-64 bg-white border-slate-300 shadow-sm mx[-1rem] overflow-hidden">
-            <img
+            <Image 
               src={item.src}
               alt={item.alt}
+              width="64"
+              height="64"
               class="aspect-square w-full h-64 object-cover"
             />
+            
             <div class="p-2 bg-gray-200 group-hover:bg-accent transition-colors">
               <h5 class="font-bold text-slate-900 truncate text-ellipsis ">
                 {item.title}
