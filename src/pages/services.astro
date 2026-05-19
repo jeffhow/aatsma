@@ -1,9 +1,70 @@
 ---
 // services.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 
+import Button from "../components/Button.astro";
+import ServiceCard from "../components/services/ServiceCard.astro";
+
+import trainingImage from "../assets/services/tomo-at-work-lg.jpg";
+import visitsImage from "../assets/services/golden-pets.jpg";
 ---
 
 <BaseLayout>
-  SERVICES
+  <article class="py-24 bg-gray-200">
+    <!-- Main container for the partners section -->
+    <div class="container mx-auto px-6 lg:px-8">
+      <header class="text-center max-w-3xl mx-auto mb-8">
+        <!-- Section intro with heading + subtext -->
+        <h2
+          class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6"
+        >
+          Professional Therapy & Training Services
+        </h2>
+        <p class="text-xl text-slate-600 font-medium leading-relaxed">
+          Animal Assisted Therapy Services (AATS) MA offers a comprehensive
+          range of professional programs designed to harness the healing power
+          of the human-animal bond. Our services include goal-directed
+          animal-assisted therapy sessions, community dog training, and a
+          rigorous multi-phase certification program for those looking to become
+          credentialed therapy dog teams.
+        </p>
+      </header>
+
+      <!-- Services Cards -->
+      <section class="md:flex gap-8">
+        <ServiceCard
+          title="Dog Training Classes"
+          imageAsset={trainingImage}
+          alt="Therapy dog, 'Tomo' sitting on a task chair at a computer workstation with a phone headset on"
+          description="Expert dog training classes, including AKC S.T.A.R.
+                  Puppy, Intermediate Obedience, and Canine Good Citizen prep.
+                  These structured courses build foundational behaviors and
+                  real-world socialization for navigating public settings with
+                  confidence."
+          href="#"
+        />
+
+        <ServiceCard
+          title="Therapy Dog Training Classes"
+          imageAsset={visitsImage}
+          alt="Therapy dog, 'Tomo' sitting on a task chair at a computer workstation with a phone headset on"
+          description="The structured, multi-phase Therapy Dog Team Program prepares handlers and their dogs for volunteer or professional visits through advanced obedience training under intense distractions. This comprehensive certification process includes mentored real-world shadowing visits and a rigorous final exam to ensure maximum safety and confidence in unpredictable environments."
+          href="#"
+        />
+
+        <ServiceCard
+          title="Animal Assisted Therapy&nbsp;Visits"
+          imageAsset={visitsImage}
+          alt="Therapy dog, 'Tomo' sitting on a task chair at a computer workstation with a phone headset on"
+          description="We offers expert dog training classes, including AKC S.T.A.R.
+                  Puppy, Intermediate Obedience, and Canine Good Citizen prep.
+                  These structured courses build foundational behaviors and
+                  real-world socialization for navigating public settings with
+                  confidence."
+          href="#"
+        />
+      </section>
+    </div>
+  </article>
 </BaseLayout>

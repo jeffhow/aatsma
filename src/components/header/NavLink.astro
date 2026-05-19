@@ -14,14 +14,7 @@ const currentPath = pathname.slice(1); // removes the leading "/"
   <ul
     class="flex items-center min-[1160px]:gap-8 gap-2 text-[13px] font-bold tracking-widest uppercase text-white/80"
   >
-    <li
-      class={currentPath === "/services"
-        ? "nav-link-item current-menu-item"
-        : "nav-link-item"}
-    >
-      <a href="/services">Services</a>
-    </li>
-
+    
     <li
       class="nav-link-item relative group/dropdown"
       x-data="{ open: false }"

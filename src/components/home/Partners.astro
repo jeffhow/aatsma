@@ -39,14 +39,14 @@ const imagePaths = Object.values(images);
         <!-- Each logo card -->
 		{
 			imagePaths.map((image,i) => (
-            <div class="aspect-square bg-white border border-slate-100 rounded-2xl p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-square bg-white border border-slate-100 rounded-2xl p-3 lg:p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
 
             
 			
 				<Image 
 					src={image()} 
 					alt={alt[i]} 
-class="max-w-full max-h-full object-contain"				/>
+            class="max-w-full max-h-full aspect-square object-cover"				/>
 			</div>
 			))
 		}

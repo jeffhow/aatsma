@@ -5,43 +5,10 @@
  * @example <PressCarousel />
  */
 import {Image} from 'astro:assets';
-import bvxCoverImage from '../../assets/press-images/non_20profit_202.webp';
-
-const items = [
-  {
-    title: "Podcast: 15 Minutes 0f...",
-    href: "https://15minutesof.blubrry.net/2021/03/15/kim-fontaine-therapy-dog-trainer/",
-    details: "Interview with Kim Fontaine, Therapy Dog Trainer",
-    src: "https://15minutesof.blubrry.net/wp-content/uploads/2020/06/15minutes2.jpg",
-    alt: "'15 minutes of' clock logo, ",
-    variant: "audio",
-  },
-  {
-    title: "Blackstone Valley Xpress",
-    href: "https://www.theyankeexpress.com/2021/02/25/348443/aats-of-massachusetts-provides-canine-comfort-to-many",
-    details: "AaTs of Massachusetts provides canine comfort to many",
-    src: bvxCoverImage,
-    alt: "An AaTs therapy dog team visits surgical residents at UMass.",
-    variant: "article",
-  },
-  {
-    title: "Woofster's Wonderdogs",
-    href: "https://www.milb.com/worcester/news/woofsters-wonderdogs-season-recap",
-    details:
-      "A Season-Long Celebration of Service, Therapy, and Rescue Dogs at Polar Park",
-    src: "https://img.mlbstatic.com/milb-images/image/upload/t_16x9/t_w1024/milb/xm8lk7crgjbvsdoqjwwv",
-    alt: "AATSMA Therapy Dog rolls around with Woo Sox Mascot (person dressed in dog costume).",
-    variant: "article",
-  },
-  {
-    title: "Holy Cross Magazine",
-    href: "https://magazine.holycross.edu/stories/inside-key-roles-therapy-dogs-play-and-campus",
-    details: "Inside the Key Roles Therapy Dogs Play on and off Campus",
-    src: "https://magazine.holycross.edu/sites/default/files/styles/story_full_1x/public/2024-03/Toshi%2C%20Gracie%2C%20Tomo%20therapy%20dogs.jpg?h=a1449943&itok=cpnWSTWH",
-    alt: "Three portraits of AATSMA Therapy dogs sitting",
-    variant: "article",
-  },
-];
+import type { ImageMetadata } from "astro"; 
+import metaData from "../../assets/press-images/press.json";
+const images = import.meta.glob<{default: ImageMetadata}>('../../assets/press-images/*.{jpeg,jpg,png,gif,webp}');
+const imagePaths = Object.values(images);
 ---
 
 <div
@@ -108,22 +75,21 @@ const items = [
     class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 pb-4"
   >
     {
-      items.map((item) => (
-        <a href={item.href} target="_blank" class="group">
+      imagePaths.map((image,i) => (
+
+        <a href={metaData[i].href} target="_blank" class="group">
           <div class="snap-start shrink-0 w-64 bg-white border-slate-300 shadow-sm mx[-1rem] overflow-hidden">
             <Image 
-              src={item.src}
-              alt={item.alt}
-              width="64"
-              height="64"
+              src={image()}
+              alt={metaData[i].alt}
               class="aspect-square w-full h-64 object-cover"
             />
             
             <div class="p-2 bg-gray-200 group-hover:bg-accent transition-colors">
               <h5 class="font-bold text-slate-900 truncate text-ellipsis ">
-                {item.title}
+                {metaData[i].title}
               </h5>
-              <p class="text-xs text-slate-500 group-hover:text-black text-ellipsis transition-colors">{item.details}</p>
+              <p class="text-xs text-slate-500 group-hover:text-black text-ellipsis transition-colors">{metaData[i].details}</p>
             </div>
           </div>
         </a>

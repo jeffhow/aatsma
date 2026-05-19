@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Podcast: 15 Minutes 0f...",
+    "href": "https://15minutesof.blubrry.net/2021/03/15/kim-fontaine-therapy-dog-trainer/",
+    "details": "Interview with Kim Fontaine, Therapy Dog Trainer",
+    "alt": "'15 minutes of' clock logo",
+    "variant": "audio"
+  },
+  {
+    "title": "Blackstone Valley Xpress",
+    "href": "https://www.theyankeexpress.com/2021/02/25/348443/aats-of-massachusetts-provides-canine-comfort-to-many",
+    "details": "AaTs of Massachusetts provides canine comfort to many",
+    "alt": "An AaTs therapy dog team visits surgical residents at UMass.",
+    "variant": "article"
+  },
+  {
+    "title": "Woofster's Wonderdogs",
+    "href": "https://www.milb.com/worcester/news/woofsters-wonderdogs-season-recap",
+    "details":
+      "A Season-Long Celebration of Service, Therapy, and Rescue Dogs at Polar Park",
+    "alt": "AATSMA Therapy Dog rolls around with Woo Sox Mascot (person dressed in dog costume).",
+    "variant": "article"
+  },
+  {
+    "title": "Holy Cross Magazine",
+    "href": "https://magazine.holycross.edu/stories/inside-key-roles-therapy-dogs-play-and-campus",
+    "details": "Inside the Key Roles Therapy Dogs Play on and off Campus",
+    "alt": "Three portraits of AATSMA Therapy dogs sitting",
+    "variant": "article"
+  }
+]
