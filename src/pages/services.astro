@@ -8,11 +8,12 @@ import ServiceCard from "../components/services/ServiceCard.astro";
 
 import trainingImage from "../assets/services/tomo-at-work-lg.jpg";
 import visitsImage from "../assets/services/golden-pets.jpg";
+import therapyTrainingImage from "../assets/services/training-image-v2.jpg";
 ---
 
 <BaseLayout>
-  <article class="py-24 bg-gray-200">
-    <!-- Main container for the partners section -->
+  <article class="pb-24 pt-36  bg-gray-200">
+    <!-- content -->
     <div class="container mx-auto px-6 lg:px-8">
       <header class="text-center max-w-3xl mx-auto mb-8">
         <!-- Section intro with heading + subtext -->
@@ -42,27 +43,35 @@ import visitsImage from "../assets/services/golden-pets.jpg";
                   These structured courses build foundational behaviors and
                   real-world socialization for navigating public settings with
                   confidence."
-          href="#"
+          href="dog-training-classes"
         />
 
         <ServiceCard
           title="Therapy Dog Training Classes"
-          imageAsset={visitsImage}
-          alt="Therapy dog, 'Tomo' sitting on a task chair at a computer workstation with a phone headset on"
-          description="The structured, multi-phase Therapy Dog Team Program prepares handlers and their dogs for volunteer or professional visits through advanced obedience training under intense distractions. This comprehensive certification process includes mentored real-world shadowing visits and a rigorous final exam to ensure maximum safety and confidence in unpredictable environments."
-          href="#"
+          imageAsset={therapyTrainingImage}
+          alt="Therapy dogs, in training at a public event."
+          description="The structured, multi-phase Therapy Dog Team Program prepares 
+                handlers and their dogs for volunteer or professional visits through 
+                advanced obedience training under intense distractions. This comprehensive 
+                certification process includes mentored real-world shadowing visits and 
+                a rigorous final exam to ensure maximum safety and confidence in 
+                unpredictable environments."
+          href="therapy-dog-training"
         />
 
         <ServiceCard
-          title="Animal Assisted Therapy&nbsp;Visits"
+          title="Animal Assisted Therapy Visits"
           imageAsset={visitsImage}
-          alt="Therapy dog, 'Tomo' sitting on a task chair at a computer workstation with a phone headset on"
-          description="We offers expert dog training classes, including AKC S.T.A.R.
-                  Puppy, Intermediate Obedience, and Canine Good Citizen prep.
-                  These structured courses build foundational behaviors and
-                  real-world socialization for navigating public settings with
-                  confidence."
-          href="#"
+          alt="A Golden retriever wearing an AATS harness lays peacefully receiving 
+                pets from someone off camera"
+          description="Tailored animal-assisted therapy sessions leverage the 
+                human-animal bond to deliver dynamic physical, cognitive, and 
+                psychosocial benefits. Delivered by certified handlers, these 
+                adaptive programs serve diverse community needs across senior 
+                care facilities and schools. Structured custom plans ensure a 
+                safe, professional, and deeply compassionate experience in any 
+                environment."
+          href="animal-assisted-therapy-visits"
         />
       </section>
     </div>

@@ -20,8 +20,9 @@ const { title, imageAsset, alt, href, description } = Astro.props;
 ---
 
 <aside
-  class="flex flex-col relative h-120 w-full overflow-clip rounded-3xl shadow-2xl shadow-black/80 mb-8"
+  class="flex flex-col group relative h-120 w-full overflow-clip rounded-3xl shadow-2xl shadow-black/80 mb-8"
 >
+  <div class="absolute w-full h-full bg-white/0 z-2 transition-all group-hover:bg-white/24"></div>
   <Image
     src={imageAsset}
     alt={alt}

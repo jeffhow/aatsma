@@ -87,14 +87,28 @@ const currentPath = pathname.slice(1); // removes the leading "/"
                 ? "nav-link-item current-menu-item"
                 : "nav-link-item"}
             >
-              <a href="/services">Services</a>
+              <a href="services">Services</a>
             </li>
             <li
               class={currentPath === "/services"
                 ? "nav-link-item current-menu-item ms-5"
                 : "nav-link-item ms-2"}
             >
-              <a href="#">Dog Training Classes</a>
+              <a href="dog-training-classes">Dog Training Classes</a>
+            </li>
+            <li
+              class={currentPath === "/services"
+                ? "nav-link-item current-menu-item ms-5"
+                : "nav-link-item ms-2"}
+            >
+              <a href="therapy-dog-training">Therapy Dog Training Classes</a>
+            </li>
+            <li
+              class={currentPath === "/services"
+                ? "nav-link-item current-menu-item ms-5"
+                : "nav-link-item ms-2"}
+            >
+              <a href="animal-assisted-therapy-visits">Animal Assisted Therapy Visit</a>
             </li>
             <li
               class={currentPath === "/about"
