@@ -1,0 +1,158 @@
+---
+// dog-training-classes.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+import seniorDog from "../assets/services/senior-visit.jpg";
+import schoolDog from "../assets/services/kid-dog-services.jpg";
+
+const registrationLink =
+  "https://docs.google.com/document/d/1JdsBjQdPSqAgzqrLwaPaKG2dyvewv_a1sDMxIK1Vvp8/edit?usp=sharing";
+---
+
+<BaseLayout>
+  <article class="pb-24 pt-36 bg-gray-200 container mx-auto px-6 lg:px-8">
+    <!-- content -->
+    <div class="container mx-auto px-6 lg:px-8">
+      <header class="text-center max-w-3xl mx-auto mb-8">
+        <!-- Section intro with heading + subtext -->
+        <h2
+          class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6"
+        >
+          Professional Animal-Assisted Interventions
+        </h2>
+      </header>
+      <p class="my-4">
+        At AATS MA, our handlers are very passionate and dedicated to training,
+        research, and education in the field of animal assisted interventions
+        and are committed to promoting the many physical, cognitive, and
+        psychosocial benefits of our innate and natural human-animal bond. Each
+        therapy dog team has completed an intensive training process (which can
+        take up to a year) and must reevaluate every two years. When you choose
+        AATS MA, you can rest assured that you will receive a professional and
+        compassionate experience.
+      </p>
+
+      <h3 class="font-bold text-2xl my-2">
+        By choosing AATS, you can expect the following exclusive benefits:
+      </h3>
+      <ul class="ps-8 list-disc">
+        <li>
+          <strong><em>Comprehensive Insurance</em></strong>: Our thorough policy
+          allows clients to enjoy both off- and on-leash experiences indoors and
+          outdoors. Outdoor sessions may include visiting a local hiking trail
+          or park. We believe that these freedoms are necessary to provide an
+          all-inclusive therapeutic experience.
+        </li>
+        <li>
+          <strong><em>Experience</em></strong>: Our training program ranges from
+          puppy classes to finished working dogs and includes exposing dogs to
+          various scenarios and distractions that they may encounter in
+          educational or medical settings.
+        </li>
+        <li>
+          <strong><em>Professionalism</em></strong>: AATS Therapy Dog Handlers
+          participate in ongoing dog training opportunities and are educated in
+          current animal assisted therapy practices. You session will always
+          include ease of communication, reliability, and a compassionate
+          attention to detail.
+        </li>
+      </ul>
+      <section>
+        <header class="max-w-3xl mx-auto mt-8 mb-4">
+          <h3 class="font-black text-2xl my-2 text-center">
+            Featured Programs &amp; Interventions
+          </h3>
+          <p>
+            The programs outlined below illustrate our core service offerings;
+            however, all therapeutic interventions can be individualized to meet
+            specific client or facility goals. We welcome you to <a
+              href="contact"
+              class="text-muted underline hover:text-accent-dark transition-colors"
+              >contact</a
+            > our team to discuss customized program development.
+          </p>
+        </header>
+
+        <h4 class="font-bold text-2xl my-2 text-center">Senior Programs</h4>
+        <Image
+          src={seniorDog}
+          alt="A senior citizen petting a therapy dog and smiling"
+          class="me-4 mb-2 float-start shadow-2xl"
+        />
+        <p>
+          AATS Credentialed Therapy Dog Teams are used to provide a multitude of
+          benefits such as facilitating socialization and communication,
+          promoting cognitive and memory stimulation, engaging patients in
+          physical or occupational therapeutic activities, creating a calming
+          and positive atmosphere, and to simply bring joy and smiles to
+          assisted living facilities, rehab centers, and skilled nursing homes.
+          We have found that the seniors readily initiate conversation with the
+          dog, the handler, or other seniors; therefore the presence of the dog
+          creates a bridge for socialization. Seniors become excited remembering
+          fond memories of their past dogs and love to tell stories to the
+          handler and to other seniors and will ask questions about the dog.
+          This also gives the handler and staff the opportunity to engage the
+          senior in constructive cognitive thinking by asking them what color
+          their dog was, what breed, etc. Walking the dog down the hallway,
+          using their arms, hands, and fingers to pet the dog, or retrieving a
+          bowl of water for the dog are examples of way that the dog can be used
+          to motivate seniors to engage in physical movement. Wonderfully,
+          science has proven that the innate, natural human-animal bond creates
+          a calming effect on humans including lowering heart rate and blood
+          pressure and releasing endorphins; we have used the dogs to bring
+          upset seniors into a calm state of mind. Additionally, the dogs bring
+          joy and smiles much more readily and energetically than any game of
+          Bingo!
+        </p>
+
+        <h4 class="font-bold text-2xl my-2 text-center">School Programs</h4>
+        <Image
+          src={schoolDog}
+          alt="A senior citizen petting a therapy dog and smiling"
+          class="me-4 mb-2 float-start shadow-2xl"
+        />
+        <p>
+          Children of all ages can experience a host of benefits by working with
+          an AATS Therapy Dog Team. We offer Reading Programs, Educational
+          Programs, and Life Skills/Special Needs Programs. The Educational Team
+          (teachers, counselors, specialized staff, administration, etc) and the
+          AATS Therapy Dog Team will discuss and create documentation to monitor
+          students' improvements over the school year for their program(s) of
+          choice.
+        </p>
+        <ul class="ps-8 list-disc">
+          <li>
+            <strong><em>Reading Programs</em></strong> have proven to be especially
+            beneficial to students that may feel uncomfortable reading in front of
+            classmates or students that are disinterested in learning. The presence
+            of a trained dog creates a calm, relaxed setting that is completely free
+            of judgment which allows students to feel comfortable and improve literacy
+            at their own pace.
+          </li>
+          <li>
+            <strong><em>Educational Programs</em></strong> can teach students of all
+            ages about the different types working dogs, how to safely approach a
+            strange dog, and dog behavior and maintenance. Students are able to use
+            what they've learned about dogs to make parallels with other aspects of
+            life such as eating a healthy diet, respecting others, obeying parents,
+            etc.
+          </li>
+          <li>
+            <strong><em>Life Skills/Special Needs</em></strong> Programs have innumerable
+            benefits! The natural and innate human-animal bond instantly creates a
+            calming and relaxing response from many students. Some students, however,
+            are overjoyed to see the dog and this gives professional staff the opportunity
+            to motivate students to engage in therapeutic activities such as moving
+            their arm to pet the dog, using a communication application to give the
+            dog a command, or walking the dog down the hallway. Life Skills tasks
+            may include getting the dog a bowl of water, brushing the dog, or simply
+            waiting patiently for their turn to interact with the dog. The AATS Therapy
+            Dog Handler will have several activities to suggest to enhance your experience!
+          </li>
+        </ul>
+        <p></p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
